@@ -14,4 +14,8 @@ public class Account {
 		this.balence = balence;
 	}
 	
+	public void setBalence(double balence) {
+		this.balence = balence;
+	}
+	
 }
