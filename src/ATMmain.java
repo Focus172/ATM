@@ -13,15 +13,20 @@ public class ATMmain {
 		idMap.put(id, new Account(id, balence));
 	}
 	
-	public void closeAccount (Integer id) {
+	public void closeAccount (Integer id) throws stupidWrongIdExceptionForDumbPeople {
 		Account temp = (Account)idMap.get(id);
-		if (temp.balence == 0.0) {
+		
+		if (temp == null) {
+			throw new stupidWrongIdExceptionForDumbPeople();
+		}
+		
+		if (temp.balence <= 0.0) {
 			idMap.remove(id);
 		}
 	}
 	
 	public double checkBalence (Integer id) {
-		
+		Account temp = (Account)idMap.get(id);
 		//returns all deposits
 		return 0.0;
 	}
