@@ -1,15 +1,15 @@
 
 public class Account {
 
-	Integer id;
+	Long id;
 	double balence;
 	
-	public Account (Integer id) {
+	public Account (Long id) {
 		this.id = id;
 		this.balence = 0.0;
 	}
 	
-	public Account (Integer id, double balence) {
+	public Account (Long id, double balence) {
 		this.id = id;
 		this.balence = balence;
 	}
@@ -17,5 +17,5 @@ public class Account {
 	public void setBalence(double balence) {
 		this.balence = balence;
 	}
-	
+	 
 }
