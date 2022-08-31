@@ -37,7 +37,9 @@ public class ATM {
 		//when the user is dumb tells them sternly by returning false
 		if (temp == null) { return false; }
 		else {
-			temp.setBalence(dep + temp.balence);
+			int money = (int)(temp.balence*100) + (int)(dep*100);
+			temp.setBalence((double)money/100);
+			
 			idMap.replace(Long.valueOf(id.longValue()), temp);
 			return true;
 		}
@@ -53,7 +55,9 @@ public class ATM {
 		else {
 			if (with < 0.0 || with > temp.balence) {return false;}
 			
-			temp.setBalence(temp.balence - with);
+			int money = (int)(temp.balence*100) - (int)(with*100);
+			temp.setBalence((double)money/100);
+			
 			idMap.replace(Long.valueOf(id.longValue()), temp);
 			return true;
 		}
