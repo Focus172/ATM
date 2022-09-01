@@ -1,3 +1,4 @@
+import java.math.BigDecimal;
 import java.util.*;
 
 public class ATM {
@@ -19,7 +20,7 @@ public class ATM {
 		Account temp = (Account)idMap.get(Long.valueOf(id.longValue()));
 		
 		//when the user is dumb tells them sternly
-		if (temp != null && temp.balence <= 0.0) {
+		if (temp != null && temp.balence.compareTo(BigDecimal.valueOf(0.0)) <= 0) {
 			idMap.remove(Long.valueOf(id.longValue()));
 		}
 	}
@@ -27,7 +28,7 @@ public class ATM {
 	public double checkBalance (Integer id) {
 		Account temp = (Account)idMap.get(Long.valueOf(id.longValue()));
 		if (temp == null) { return 0.0; }
-		else { return temp.balence;}
+		else { return temp.balence.doubleValue();}
 		
 	}
 	
@@ -37,8 +38,10 @@ public class ATM {
 		//when the user is dumb tells them sternly by returning false
 		if (temp == null) { return false; }
 		else {
-			int money = (int)(temp.balence*100) + (int)(dep*100);
-			temp.setBalence((double)money/100);
+			//int money = (int)(temp.balence*100) + (int)(dep*100);
+			//temp.setBalence((double)money/100);
+			
+			temp.setBalence(temp.balence.add(BigDecimal.valueOf(dep)));
 			
 			idMap.replace(Long.valueOf(id.longValue()), temp);
 			return true;
@@ -53,10 +56,12 @@ public class ATM {
 		//when the user is dumb tells them sternly by returning false
 		if (temp == null) { return false; }
 		else {
-			if (with < 0.0 || with > temp.balence) {return false;}
+			if (with < 0.0 || with > temp.balence.doubleValue()) {return false;}
 			
-			int money = (int)(temp.balence*100) - (int)(with*100);
-			temp.setBalence((double)money/100);
+			//int money = (int)(temp.balence*100) - (int)(with*100);
+			//temp.setBalence((double)money/100);
+			
+			temp.setBalence(temp.balence.subtract(BigDecimal.valueOf(with)));
 			
 			idMap.replace(Long.valueOf(id.longValue()), temp);
 			return true;
